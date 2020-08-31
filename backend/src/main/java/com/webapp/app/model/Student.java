@@ -35,6 +35,9 @@ public class Student {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
+    @NotNull
+    private String className;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude

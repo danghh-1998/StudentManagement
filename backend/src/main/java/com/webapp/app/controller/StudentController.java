@@ -67,6 +67,7 @@ public class StudentController {
         currentStudent.get().setEmail(student.getEmail());
         currentStudent.get().setBirthday(student.getBirthday());
         currentStudent.get().setGender(student.getGender());
+        currentStudent.get().setClassName(student.getClassName());
         this.studentService.save(currentStudent.get());
         return new ResponseEntity<>(currentStudent.get(), HttpStatus.OK);
     }
