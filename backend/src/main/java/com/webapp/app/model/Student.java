@@ -2,6 +2,8 @@ package com.webapp.app.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.webapp.app.constant.GenderType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -41,12 +43,14 @@ public class Student {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @JsonIgnore
+    @JsonIgnoreProperties("students")
     @JoinTable(name = "registration", joinColumns = @JoinColumn(columnDefinition = "userId"), inverseJoinColumns = @JoinColumn(columnDefinition = "subjectId"))
     private Collection<Subject> subjects;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updatedAt;
 
     @PrePersist

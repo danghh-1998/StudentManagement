@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -49,7 +48,7 @@ public class SubjectController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Subject> updateSubject(@Valid @RequestBody Subject subject, @PathVariable Integer id) {
+    public ResponseEntity<Subject> updateSubject(@RequestBody Subject subject, @PathVariable Integer id) {
         Optional<Subject> currentSubject = this.subjectService.findById(id);
         if (currentSubject.isEmpty()) {
             throw new NotFoundException();

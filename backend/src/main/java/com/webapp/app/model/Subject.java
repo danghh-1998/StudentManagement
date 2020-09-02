@@ -1,6 +1,9 @@
 package com.webapp.app.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -24,9 +27,10 @@ public class Subject {
     @Column(unique = true)
     private String name;
 
-    @ManyToMany(mappedBy = "subjects")
+    @ManyToMany(mappedBy = "subjects", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonIgnoreProperties("subjects")
     private Collection<Student> students;
 
     @NotNull
@@ -41,8 +45,10 @@ public class Subject {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updatedAt;
 
     @PrePersist
