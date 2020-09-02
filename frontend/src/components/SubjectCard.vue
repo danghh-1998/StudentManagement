@@ -85,7 +85,7 @@
         <b-modal
             :id="modalStudentId"
             hide-footer
-            title="Danh sách môn học"
+            title="Danh sách sinh viên đăng ký"
             size="lg"
         >
             <b-list-group>
